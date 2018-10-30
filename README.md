@@ -8,15 +8,47 @@ A online shop website using SSM &amp; SpringBoot
   - Run -> Edit configuration -> new Tomcat Server -> local -> add build -> Name.war
 
 ## Design
-### Front End
-- Top goods list
-- Store Type list
+### Module
+#### Front End
+- Show top goods list
+- Show shop catagory list
+- Show area info
+- Show shop info
+  - List
+  - Search
+  - Detail
+- Show Goods info
+  - List
+  - Search
+  - Detail
+  
+#### Vendor
+- Maintain local account
+- Maintain Twitter, Facebook Account
+- Maintain shop Info
+- Authentication
+- Maintain shop catagory
+
+#### Administrator
+- Maintain top goods
+- Maintain shop catagory
+- Maintain area
+- Authentication
+- Shop management
+- User management
+### Entity
 - Area
+  - Id
+  - Priority
+  - Created Time
+  - Modified Time
+  - Name
+- User Info
+  - Twitter, Facebook Account
+  - Local Account
+- Top Goods
+- Shop catagory
 - Shop
-  - List
-  - Search
-  - Detail
 - Goods
-  - List
-  - Search
-  - Detail
+  - Detail images
+- Goods catagory
