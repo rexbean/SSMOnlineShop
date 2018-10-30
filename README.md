@@ -39,7 +39,7 @@ A online shop website using SSM &amp; SpringBoot
 ### Entity
 #### Area
 
-| Name        | Type    | Not Null | Auto Increament| Default|
+| Name        | Type    | Not Null | Auto Increment| Default|
 |-------------|---------|----------|----------------|--------|
 |area_id      |int(2)   |  true    | true           |        |
 |area_name    |char(200)|  true    | false          |        |
@@ -49,11 +49,11 @@ A online shop website using SSM &amp; SpringBoot
 
  - Primary Key : area_id
  - Unique: area_name
- - ENGINE = InnoDB AUTO_INCRAEMENT = 1 DEFAULT CHARSET = utf8;
- - \* ENGINE
+ - ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+ * ENGINE
    + InnoDB : In this engine, it will lock a row
    + MYISAM : In this engine, it will lock whole table, but has high read speed.
- - \* Why use datatime instead of timestamp?
+ * Why use datatime instead of timestamp?
    + Datatime has a wider range than the timestamp. 
    + Datatime can represent 1/1/1000 00:00:00 - 12/31/9999 23:59:59 
    + Timestamp can not represent the time before 1970 or after 2037
