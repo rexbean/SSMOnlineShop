@@ -73,8 +73,34 @@ A online shop website using SSM &amp; SpringBoot
 |modified_time|datatime     |  false   | false          | NULL   |
 
 - Primary Key : user_id
-- Twitter, Facebook Account
-- Local Account
+#### Wechat Account
+
+|     Name        | Type         | Not Null | Auto Increment | Default|
+|-----------------|--------------|----------|----------------|--------|
+|wechat_account_id| int(10)      |  true    | true           |        |
+|user_id          | int(10)      |  true    | false          |        |
+|open_id          | varchar(1024)|  true    | false          |        |
+|created_time     | datetime     |  false   | false          | NULL   |
+
+  - Primary Key : wechat_account_id
+  - Foregin Key : user_id => tb_user_info: user_id
+  - Unique : open_id
+#### Local Account
+
+|     Name        | Type         | Not Null | Auto Increment | Default|
+|-----------------|--------------|----------|----------------|--------|
+|local_account_id | int(10)      |  true    | true           |        |
+|user_id          | int(10)      |  true    | false          |        |
+|username         | varchar(128) |  true    | fasle          |        |
+|password         | varchar(128) |  true    | false          |        |
+|created_time     | datetime     |  false   | false          | NULL   |
+|modified_time    | datetime     |  false   | false          | NULL   |
+
+  - Primary Key : local_account_id
+  - Foregin Key : user_id => tb_user_info : user_id
+  - Unique : username
+  
+
 - Top Goods
 - Shop catagory
 - Shop
