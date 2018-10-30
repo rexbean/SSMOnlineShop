@@ -157,7 +157,32 @@ A online shop website using SSM &amp; SpringBoot
       - area_id => tb_area : area_id
       - shop_catagory_id => tb_shop_catagory : shop_catagory_id
   
+#### Product Catagory
 
-- Goods
-  - Detail images
-- Goods catagory
+|     Name             | Type         | Not Null | Auto Increment | Default|
+|----------------------|--------------|----------|----------------|--------|
+|product_catagory_id   | int(11)      |  true    | true           |        |
+|product_catagory_name | varchar(100) |  true    | false          |        |
+|priority              | int(2)       |  false   | false          | 0      |
+|created_time          | datetime     |  false   | false          | NULL   |
+|shop_id               | int(20)      |  true    | false          | 0      |
+
+  - Primary Key : product_catagory_id
+  - Foregin Key : shop_id => tb_shop : shop_id
+
+#### Product Image
+
+|     Name          | Type         | Not Null | Auto Increment | Default|
+|-------------------|--------------|----------|----------------|--------|
+|product_img_id     | int(20)      |  true    | true           |        |
+|img_addr           | varchar(2000)|  true    | false          |        |
+|img_desc           | varchar(2000)|  false   | fasle          | NULL   |
+|priority           | int(2)       |  false   | false          | 0      |
+|created_time       | datetime     |  false   | false          | NULL   |
+|product_id         | int(20)      |  false   | false          | NULL   |
+
+   - Primary Key : product_img_id
+   - Foregin Key : product_id => tb_product : product_id
+   
+#### Product
+
