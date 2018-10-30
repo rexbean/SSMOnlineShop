@@ -101,7 +101,21 @@ A online shop website using SSM &amp; SpringBoot
   - Unique : username
   
 
-- Top Goods
+#### Headline
+
+|     Name        | Type         | Not Null | Auto Increment | Default|
+|-----------------|--------------|----------|----------------|--------|
+|id               | int(100)     |  true    | true           |        |
+|name             | varchar(1000)|  true    | false          | NULL   |
+|link             | varchar(2000)|  true    | fasle          |        |
+|image            | varchar(2000)|  true    | false          |        |
+|priority         | int(2)       |  false   | false          | NULL   |
+|status           | boolean      |  true    | false          | false  |
+|created_time     | datetime     |  false   | false          | NULL   |
+|modified_time    | datetime     |  false   | false          | NULL   |
+
+  -Primary Key: id
+  
 - Shop catagory
 - Shop
 - Goods
