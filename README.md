@@ -123,7 +123,7 @@ A online shop website using SSM &amp; SpringBoot
 |shop_catagory_name | varchar(100) |  true    | false          | ''     |
 |shop_catagory_desc | varchar(2000)|  false   | fasle          | ''     |
 |shop_catagory_image| varchar(2000)|  false   | false          | NULL   |
-|priority           | int(2)       |  false   | false          | NULL   |
+|priority           | int(2)       |  false   | false          | 0      |
 |created_time       | datetime     |  false   | false          | NULL   |
 |modified_time      | datetime     |  false   | false          | NULL   |
 |parent_id          | int(11)      |  false   | false          |        |
@@ -131,8 +131,33 @@ A online shop website using SSM &amp; SpringBoot
   - Primary Key : shop_catagory_id
   - Foregin Key : parent_id => tb_shop_catagory : shop_catagory_id
   
-- Shop catagory
-- Shop
+
+####  Shop
+
+|     Name       | Type         | Not Null | Auto Increment | Default|
+|----------------|--------------|----------|----------------|--------|
+|shop_id         | int(10)      |  true    | true           |        |
+|owner_id        | int(10)      |  true    | false          |        |
+|area_id         | int(5)       |  false   | false          | NULL   |
+|shop_catagory_id| int(11)      |  false   | false          | NULL   |
+|shop_name       | varchar(256) |  true    | false          | ''     |
+|shop_desc       | varchar(1024)|  false   | false          | NULL   |
+|shop_addr       | varchar(200) |  false   | false          | NULL   |
+|phone           | varchar(128) |  false   | false          | NULL   |
+|shop_img        | varchar(2000)|  false   | false          | NULL   |
+|priority        | int(2)       |  false   | false          | 0      |
+|status          | int(2)       |  true    | false          | 0      |
+|advice          | varchar(255) |  false   | false          | NULL   |
+|created_time    | datetime     |  false   | false          | NULL   |
+|modified_time   | datetime     |  false   | false          | NULL   |
+
+  - Primary Key : shop_id
+  - Foregin Key 
+      - owner_id => tb_user_info : user_id
+      - area_id => tb_area : area_id
+      - shop_catagory_id => tb_shop_catagory : shop_catagory_id
+  
+
 - Goods
   - Detail images
 - Goods catagory
