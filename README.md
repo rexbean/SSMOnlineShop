@@ -58,9 +58,23 @@ A online shop website using SSM &amp; SpringBoot
    + Datatime can represent 1/1/1000 00:00:00 - 12/31/9999 23:59:59 
    + Timestamp can not represent the time before 1970 or after 2037
    + Timestamp will auto adapt to the time zone
-- User Info
-  - Twitter, Facebook Account
-  - Local Account
+#### User Info
+
+| Name        | Type        | Not Null | Auto Increment | Default|
+|-------------|-------------|----------|----------------|--------|
+|user_id      |int(2)       |  true    | true           |        |
+|username     |varchar(32)  |  true    | false          |        |
+|avatar       |varchar(1024)|  false   | false          |        |
+|email        |varchar(1024)|  false   | false          |        |
+|gender       |varchar(10)  |  false   | false          |        |
+|status       |boolean      |  true    | false          | false  |
+|user_type    |int(2)       |  true    | false          | 0      |
+|created_time |datatime     |  false   | false          | NULL   |
+|modified_time|datatime     |  false   | false          | NULL   |
+
+- Primary Key : user_id
+- Twitter, Facebook Account
+- Local Account
 - Top Goods
 - Shop catagory
 - Shop
