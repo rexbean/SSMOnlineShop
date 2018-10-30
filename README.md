@@ -114,7 +114,22 @@ A online shop website using SSM &amp; SpringBoot
 |created_time     | datetime     |  false   | false          | NULL   |
 |modified_time    | datetime     |  false   | false          | NULL   |
 
-  -Primary Key: id
+  - Primary Key: id
+#### Shop Catagory
+
+|     Name          | Type         | Not Null | Auto Increment | Default|
+|-------------------|--------------|----------|----------------|--------|
+|shop_catagory_id   | int(11)      |  true    | true           |        |
+|shop_catagory_name | varchar(100) |  true    | false          | ''     |
+|shop_catagory_desc | varchar(2000)|  false   | fasle          | ''     |
+|shop_catagory_image| varchar(2000)|  false   | false          | NULL   |
+|priority           | int(2)       |  false   | false          | NULL   |
+|created_time       | datetime     |  false   | false          | NULL   |
+|modified_time      | datetime     |  false   | false          | NULL   |
+|parent_id          | int(11)      |  false   | false          |        |
+
+  - Primary Key : shop_catagory_id
+  - Foregin Key : parent_id => tb_shop_catagory : shop_catagory_id
   
 - Shop catagory
 - Shop
