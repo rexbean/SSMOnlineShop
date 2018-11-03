@@ -9,6 +9,27 @@
 - Configuration
   - jdbc.properties
   - Mybatis-config.xml
+- Dynamic generate SQL statement
+  - Generate SQL statement when the condition is true
+  ``` XML
+  <update id = "updateShop" parameterType="com.rex.onlineShop.entity.Shop">
+        UPDATE tb_shop
+        <set>
+            <if test="shopName != null">shop_name = #{shopName},</if>
+            <if test="shopDesc != null">shop_desc = #{shopDesc},</if>
+            <if test="shopAddr != null">shop_addr = #{shopAddr},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="priority != null">priority = #{priority},</if>
+            <if test="shopImg != null">shop_img = #{shopImg},</if>
+            <if test="advice != null">advice = #{advice},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="area != null">area_id = #{area.areaId},</if>
+            <if test="shopCategory != null">shop_catagroy_id = #{shopCategory.shopCatagoryId}</if>
+        </set>
+        where shop_id = #{shopId}
+    </update>
+  ```
 ## Procedure
 ### Dao
 - Create a specific interface(AreaDao) of a Dao and add a method in it.
