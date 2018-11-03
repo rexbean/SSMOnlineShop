@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--Config SpringMVC -->
+    <!--1. Open the annotation mode-->
+    <mvc:annotation-driven />
+    <!--2. config static resources for servlet
+    (1) deal with the static resources, js, gif, png
+    (2) allow using '/' tot do the mapping-->
+    <mvc:resources mapping="/resources/**/" location="/resources/" />
+    <mvc:default-servlet-handler />
+
+    <!--3. define view resolver-->
+    <bean id="viewResolver"
+          class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name = "prefix" value = "/WEB-INF/html/"/>
+        <property name = "suffix" value = ".html"/>
+    </bean>
+
+    <!--Scan related bean-->
+    <context:component-scan base-package="com.rex.onlineShop.web" />
+</beans>

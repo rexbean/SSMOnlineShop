@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--Scan the configuration file change-->
+<configuration scan = "true" scanPeriod = "60 seconds" debug = "false">
+    <!--Define some parameter constant(property)-->
+    <property name = "log.level" value = "debug"/>
+    <property name = "log.maxHistory" value = "30"/>
+    <!--Tomcat root path-->
+    <property name = "log.filePath" value = "${catalina.base}/logs/webapps"/>
+    <property name = "log.pattern"
+              value = "%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread] %-5level % logger{50} - %msg%n"/>
+    <appender name = "consoleAppender" class = "ch.qos.logback.core.ConsoleAppender">
+        <!--Event => byte[] => file-->
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    <!--RollingFileAppender: append with the time passing by-->
+    <appender name = "debugAppender" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.filePath}/debug.log</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--File name-->
+            <fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz
+            </fileNamePattern>
+            <maxHistory>${log.MaxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+            <fileter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>DEBUG</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </fileter>
+    </appender>
+    <appender name = "infoAppender" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.filePath}/info.log</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--File name-->
+            <fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz
+            </fileNamePattern>
+            <MaxHistory>${log.MaxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <fileter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </fileter>
+    </appender>
+    <appender name = "errorAppender" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.filePath}/error.log</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--File name-->
+            <fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz
+            </fileNamePattern>
+            <MaxHistory>${log.MaxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <fileter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </fileter>
+    </appender>
+    <!--Additivity logger level log will also append into the root-->
+    <!--Each class can only have one logger, because of additivity, console can also see the log-->
+    <logger name = "com.rex.onlineShop" level = "${log.level}" additivity = "true">
+        <appender-ref ref = "debugAppender"/>
+        <appender-ref ref = "infoAppender"/>
+        <appender-ref ref = "errorAppender"/>
+    </logger>
+    <!--Special logger, parent-->
+    <root level = "info">
+        <appender-ref ref = "consoleAppender"/>
+    </root>
+</configuration>
