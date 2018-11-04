@@ -4,7 +4,6 @@
   - Spring-dao.xml
   - Spring-service.xml
   - Spring-web.xml
-- Transaction (add @Transactional annotation above the method) will only roll back when it meets the RuntimeException
 ## SpringMVC
 ## Mybatis
 - Configuration
@@ -49,7 +48,10 @@
 ### Service
 - Add a specific service interface(AreaService)
 - Create a implementation of the service(AreaServiceImpl) and add @Service annotation on
+- Add @Transactional annotation above the method, the method will be a transaction.
+- **Transcation will only roll back when it meets the RuntimeException**
 - Use @AutoWired annotation to inject the Dao object, Override the method
+
 ### Controller
 - Create a controller Class(AreaController)
 - Add the @Controller and @RequestMapping Annotation above the class
