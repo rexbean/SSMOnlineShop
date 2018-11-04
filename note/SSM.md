@@ -4,6 +4,7 @@
   - Spring-dao.xml
   - Spring-service.xml
   - Spring-web.xml
+- Transaction (add @Transactional annotation above the method) will only roll back when it meets the RuntimeException
 ## SpringMVC
 ## Mybatis
 - Configuration
