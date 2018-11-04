@@ -27,7 +27,7 @@
             <if test="status != null">status = #{status},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="area != null">area_id = #{area.areaId},</if>
-            <if test="shopCategory != null">shop_catagroy_id = #{shopCategory.shopCatagoryId}</if>
+            <if test="shopCategory != null">shop_catagory_id = #{shopCategory.shopCatagoryId}</if>
         </set>
         where shop_id = #{shopId}
     </update>

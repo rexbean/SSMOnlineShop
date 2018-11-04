@@ -1,9 +1,21 @@
 # SSM
 ## Spring
-- Configuartion
+- Configuration
   - Spring-dao.xml
   - Spring-service.xml
   - Spring-web.xml
+- CommonMultipartFile 
+    - Spring using CommonMultiplePartFile to get upload file,by using code below:
+ ``` java
+CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(
+                request.getSession().getServletContext());
+        if(commonsMultipartResolver.isMultipart(request)){
+            MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+            shopImg = (CommonsMultipartFile)multipartHttpServletRequest.getFile("shopImg");
+        }
+ ```
+
+   - CommonMultiplePartFile convert to File using CommonMultiplePartFile.getInputStream as a intermediate.
 ## SpringMVC
 ## Mybatis
 - Configuration
@@ -49,7 +61,7 @@
 - Add a specific service interface(AreaService)
 - Create a implementation of the service(AreaServiceImpl) and add @Service annotation on
 - Add @Transactional annotation above the method, the method will be a transaction.
-- **Transcation will only roll back when it meets the RuntimeException**
+- **Transaction will only roll back when it meets the RuntimeException**
 - Use @AutoWired annotation to inject the Dao object, Override the method
 
 ### Controller

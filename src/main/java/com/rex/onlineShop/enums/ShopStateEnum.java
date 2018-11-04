@@ -4,7 +4,8 @@ package com.rex.onlineShop.enums;
 public enum ShopStateEnum {
     CHECK(0,"Checking"), OFFLINE(-1, "Illegal"),
     SUCCESS(1,"Success"), PASS(2,"Pass"),
-    INNER_ERROR(-1001,"Inner Error"), NULL_SHOPID(-1002,"Shop Id is Null");
+    INNER_ERROR(-1001,"Inner Error"), NULL_SHOPID(-1002,"Shop Id is Null"),
+    NULL_SHOP(-1003,"Null shop");
 
     private int state;
     private String stateInfo;

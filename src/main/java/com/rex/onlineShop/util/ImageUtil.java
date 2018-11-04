@@ -4,11 +4,11 @@ package com.rex.onlineShop.util;
 import com.sun.istack.internal.Nullable;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -23,14 +23,15 @@ public class ImageUtil {
      *
      * @return the path of the thumbnail
      */
-    public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr){
+    public static String generateThumbnail(InputStream thumbnailInputStream, String filename, String targetAddr){
         String realFilename = getRandomFileName();
-        String extension = getFileExtension(thumbnail);
+        String extension = getFileExtension(filename);
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFilename + extension;
         File dest = new File(PathUtil.getImgBasePath()+relativeAddr);
         try{
-            Thumbnails.of(thumbnail.getInputStream()).size(200,200)
+            System.out.println("basePath = " + basePath);
+            Thumbnails.of(thumbnailInputStream).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")),0.25f)
                     .outputQuality(0.8f).toFile(dest);
 
@@ -55,9 +56,8 @@ public class ImageUtil {
      * get the extension of the image file
      * @return image type
      */
-    private static String getFileExtension(CommonsMultipartFile cFile){
-        String originalFileName = cFile.getOriginalFilename();
-        return originalFileName.substring(originalFileName.lastIndexOf("\\."));
+    private static String getFileExtension(String filename){
+        return filename.substring(filename.lastIndexOf("."));
     }
 
     /**
