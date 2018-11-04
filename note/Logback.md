@@ -23,9 +23,9 @@
     <property name = "log.level" value = "debug"/>
     <property name = "log.maxHistory" value = "30"/>
     <!--Tomcat root path-->
-    <property name = "log.filePath" value = "${catalina.base}/logs/webapps"/>
+    <property name = "log.filePath" value = "logs/webapps"/>
     <property name = "log.pattern"
-              value = "%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread] %-5level % logger{50} - %msg%n"/>
+              value = "%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread] %-5level %logger{50} - %msg%n"/>
     <appender name = "consoleAppender" class = "ch.qos.logback.aore.ConsoleAppender">
         <!--Event => byte[] => file-->
         <encoder>
@@ -39,7 +39,7 @@
             <!--File name-->
             <fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz
             </fileNamePattern>
-            <maxHistory>${log.MaxHistory}</maxHistory>
+            <maxHistory>${log.maxHistory}</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${log.pattern}</pattern>
@@ -56,7 +56,7 @@
             <!--File name-->
             <fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz
             </fileNamePattern>
-            <MaxHistory>${log.MaxHistory}</MaxHistory>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${log.pattern}</pattern>
@@ -73,7 +73,7 @@
             <!--File name-->
             <fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz
             </fileNamePattern>
-            <MaxHistory>${log.MaxHistory}</MaxHistory>
+            <MaxHistory>${log.maxHistory}</MaxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${log.pattern}</pattern>
