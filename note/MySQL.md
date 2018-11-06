@@ -68,9 +68,9 @@ mysql> start slave
 mysql> show slave status \G;
 ```
 ## Coding for separating read and write
-- Write a interceptor which can redirect the READ operations to the slave, the WRITE operations to the master[interceptor](../src/com/rex/onlineShop/dao/split/DynamicDataSourceInterceptor.java)
-- Use a class named DataSourceHolder to get and set type in a thread safe way.[Holder](../src/com/rex/onlineShop/dao/split/DynamicDataSourceHolder.java)
-- Create a class named DynamicDataSource extends **AbstractRoutingDataSource** to set the different dataSource.[DataSource](../src/com/rex/onlineShop/dao/split/DynamicDataSource.java)
+- Write a interceptor which can redirect the READ operations to the slave, the WRITE operations to the master[interceptor](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceInterceptor.java)
+- Use a class named DataSourceHolder to get and set type in a thread safe way.[Holder](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceHolder.java)
+- Create a class named DynamicDataSource extends **AbstractRoutingDataSource** to set the different dataSource.[DataSource](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSource.java)
 - DataSource is configured in the Spring-dao.xml like below:
 - Create a bean **abstractDataSource** whose class is **com.mchange.v2.c3p0.ComboPooledDataSource** and let **abstract = "true"**, destroy-method = "close"
 - Write the same properties in the abstractDataSource
