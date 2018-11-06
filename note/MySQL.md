@@ -71,7 +71,7 @@ mysql> show slave status \G;
 - Write a [interceptor](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceInterceptor.java) which can redirect the READ operations to the slave, the WRITE operations to the master
 - Use a class named [DataSourceHolder](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceHolder.java) to get and set type in a thread safe way.
 - Create a class named [DynamicDataSource](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSource.java) extends **AbstractRoutingDataSource** to set the different dataSource.
-- DataSource is configured in the [Spring-dao.xml](../src/main/java/resources/spring/spring-dao.xml) like below:
+- DataSource is configured in the [Spring-dao.xml](../src/main/resources/spring/spring-dao.xml) like below:
 - Create a bean **abstractDataSource** whose class is **com.mchange.v2.c3p0.ComboPooledDataSource** and let **abstract = "true"**, destroy-method = "close"
 - Write the same properties in the abstractDataSource
 - Add two beans whose ids are **"master"** and **"slave"** and parent is **"abstractDataSource"**
