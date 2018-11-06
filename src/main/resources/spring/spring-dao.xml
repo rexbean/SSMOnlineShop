@@ -8,16 +8,19 @@
 	   http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- config mybatis-->
     <!-- 1. Config the database's property-->
+    <bean class = "com.rex.onlineShop.util.EncryptPropertyPlaceholderConfigurer">
+        <property name = "locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+        <property name = "fileEncoding" value ="UTF-8"/>
+    </bean>
     <context:property-placeholder location="classpath:jdbc.properties" />
 
     <!-- 2. Database connection pool-->
-    <bean id = "dataSource" class = "com.mchange.v2.c3p0.ComboPooledDataSource">
-        <!--Config properties-->
-        <property name = "driverClass" value ="${jdbc.driver}"/>
-        <property name = "jdbcUrl" value = "${jdbc.url}" />
-        <property name = "user" value = "${jdbc.username}" />
-        <property name = "password" value = "${jdbc.password}"/>
-
+    <bean id = "abstractDataSource" abstract  = "true" class = "com.mchange.v2.c3p0.ComboPooledDataSource"
+    destroy-method ="close">
         <!-- c3p0 private property -->
         <property name = "maxPoolSize" value = "30" />
         <property name = "minPoolSize" value = "10" />
@@ -27,6 +30,34 @@
         <property name = "checkoutTimeout" value = "10000" />
         <!--Get the retry attempts-->
         <property name = "acquireRetryAttempts" value = "2" />
+    </bean>
+    <bean id="master" parent = "abstractDataSource">
+        <!--Config properties-->
+        <property name = "driverClass" value ="${jdbc.driver}"/>
+        <property name = "jdbcUrl" value = "${jdbc.master.url}" />
+        <property name = "user" value = "${jdbc.username}" />
+        <property name = "password" value = "${jdbc.password}"/>
+    </bean>
+    <bean id = "slave" parent = "abstractDataSource">
+        <!--Config properties-->
+        <property name = "driverClass" value ="${jdbc.driver}"/>
+        <property name = "jdbcUrl" value = "${jdbc.slave.url}" />
+        <property name = "user" value = "${jdbc.username}" />
+        <property name = "password" value = "${jdbc.password}"/>
+    </bean>
+    <!--Config Dynamic DataSource-->
+    <bean id = "dynamicDataSource" class = "com.rex.onlineShop.dao.split.DynamicDataSource">
+        <property name = "targetDataSources">
+            <map>
+                <entry value-ref = "master" key = "master"/>
+                <entry value-ref = "slave" key = "slave"/>
+            </map>
+        </property>
+    </bean>
+    <bean id = "dataSource" class = "org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name = "targetDataSource">
+            <ref bean = "dynamicDataSource"/>
+        </property>
     </bean>
     <!--3. Config SqlSessionFactory-->
     <bean id = "sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

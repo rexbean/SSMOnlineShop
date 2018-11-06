@@ -1,9 +1,25 @@
-2018-11-04 00:41:15.170[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_catagory_id,shop_name, shop_desc,shop_addr,phone, shop_img,priority, created_time, modified_time,status,advice) VALUES (?,?,?,?, ?,?,?,?,?,?,?, ?,?) 
-2018-11-04 00:41:15.201[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), TestShop2(String), TestDesc2(String), Santa Clara(String), 123123(String), 01(String), null, 2018-11-04 00:41:15.155(Timestamp), 2018-11-04 00:41:15.155(Timestamp), 0(Integer), checking(String)
-2018-11-04 00:41:15.201[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - <==    Updates: 1
-2018-11-04 00:41:15.357[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name = ?, shop_desc = ?, shop_addr = ?, phone = ?, shop_img = ?, advice = ?, status = ?, modified_time = ?, area_id = ?, shop_catagory_id = ? where shop_id = ? 
-2018-11-04 00:41:15.357[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - ==> Parameters: TestShop2(String), TestDesc2(String), Santa Clara(String), 123123(String), Image\upload\icon\shop\24\2018110400411561472.jpg(String), checking(String), 0(Integer), 2018-11-04 00:41:15.155(Timestamp), 2(Integer), 1(Long), 24(Long)
-2018-11-04 00:41:15.373[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - <==    Updates: 1
-2018-11-04 00:46:22.018[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_catagory_id,shop_name, shop_desc,shop_addr,phone, shop_img,priority, created_time, modified_time,status,advice) VALUES (?,?,?,?, ?,?,?,?,?,?,?, ?,?) 
-2018-11-04 00:46:22.034[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), TestShop2(String), TestDesc2(String), Santa Clara(String), 123123(String), 01(String), null, 2018-11-04 00:46:22.003(Timestamp), 2018-11-04 00:46:22.003(Timestamp), 0(Integer), checking(String)
-2018-11-04 00:46:22.049[main] DEBUG com.rex.onlineShop.dao.ShopDao.insertShop - <==    Updates: 1
+2018-11-05 12:03:42.466[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.ShopDao.queryByShopId] use [slave] Strategy, SqlCommanType[SELECT]..
+2018-11-05 12:03:42.473[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is slave
+2018-11-05 12:03:42.485[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.created_time, s.modified_time, s.status, s.advice, a.area_id, a.area_name, sc.shop_catagory_id, sc.shop_catagory_name FROM tb_shop s, tb_area a, tb_shop_catagory sc WHERE s.area_id = a.area_id AND s.shop_catagory_id = sc.shop_catagory_id AND s.shop_id = ? 
+2018-11-05 12:03:42.530[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - ==> Parameters: 1(Long)
+2018-11-05 12:03:42.553[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - <==      Total: 1
+2018-11-05 12:03:42.752[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.ShopDao.updateShop] use [master] Strategy, SqlCommanType[UPDATE]..
+2018-11-05 12:03:42.752[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is master
+2018-11-05 12:03:42.770[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_name = ?, shop_img = ?, modified_time = ? where shop_id = ? 
+2018-11-05 12:03:42.771[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - ==> Parameters: after modified(String), Image\upload\icon\shop\1\2018110512034215751.jpg(String), 2018-11-05 12:03:42.752(Timestamp), 1(Long)
+2018-11-05 12:03:42.776[main] DEBUG com.rex.onlineShop.dao.ShopDao.updateShop - <==    Updates: 1
+2018-11-05 12:03:42.776[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.ShopDao.queryByShopId] use [slave] Strategy, SqlCommanType[SELECT]..
+2018-11-05 12:03:42.777[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is slave
+2018-11-05 12:03:42.777[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.priority, s.created_time, s.modified_time, s.status, s.advice, a.area_id, a.area_name, sc.shop_catagory_id, sc.shop_catagory_name FROM tb_shop s, tb_area a, tb_shop_catagory sc WHERE s.area_id = a.area_id AND s.shop_catagory_id = sc.shop_catagory_id AND s.shop_id = ? 
+2018-11-05 12:03:42.777[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - ==> Parameters: 1(Long)
+2018-11-05 12:03:42.778[main] DEBUG com.rex.onlineShop.dao.ShopDao.queryByShopId - <==      Total: 1
+2018-11-05 16:05:45.742[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.AreaDao.queryArea] use [slave] Strategy, SqlCommanType[SELECT]..
+2018-11-05 16:05:45.758[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is slave
+2018-11-05 16:05:45.758[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name,priority, created_time, modified_time FROM tb_area ORDER BY priority DESC 
+2018-11-05 16:05:45.789[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==> Parameters: 
+2018-11-05 16:05:45.820[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - <==      Total: 2
+2018-11-05 16:20:33.876[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.AreaDao.queryArea] use [slave] Strategy, SqlCommanType[SELECT]..
+2018-11-05 16:20:33.876[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is slave
+2018-11-05 16:20:33.907[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name,priority, created_time, modified_time FROM tb_area ORDER BY priority DESC 
+2018-11-05 16:20:33.938[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==> Parameters: 
+2018-11-05 16:20:33.955[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - <==      Total: 2

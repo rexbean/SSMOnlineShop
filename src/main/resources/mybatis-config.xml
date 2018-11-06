@@ -14,4 +14,7 @@
         <!-- Using Camel to covert Table{create_time} -> Entity{createTime}-->
         <setting name = "mapUnderscoreToCamelCase" value = "true"/>
     </settings>
+    <plugins>
+        <plugin interceptor="com.rex.onlineShop.dao.split.DynamicDataSourceInterceptor"/>
+    </plugins>
 </configuration>

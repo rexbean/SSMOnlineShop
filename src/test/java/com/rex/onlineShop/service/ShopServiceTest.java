@@ -7,6 +7,7 @@ import com.rex.onlineShop.entity.Shop;
 import com.rex.onlineShop.entity.ShopCategory;
 import com.rex.onlineShop.entity.UserInfo;
 import com.rex.onlineShop.enums.ShopStateEnum;
+import com.rex.onlineShop.exceptions.ShopOperationException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +23,16 @@ public class ShopServiceTest extends BaseTest {
     @Autowired
     private ShopService shopService;
 
+    @Test
+    public void testModifyShop() throws ShopOperationException, FileNotFoundException{
+        Shop shop = new Shop();
+        shop.setShopName("after modified");
+        shop.setShopId(1L);
+        File shopImg = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\Jellyfish.jpg");
+        InputStream is = new FileInputStream(shopImg);
+        ShopExecution se = shopService.modifyShop(shop, is, "Jellyfish.jpg");
+        System.out.println("new image address " + se.getShop().getShopImg());
+    }
     @Test
     public void testAddShop(){
         Shop shop = new Shop();

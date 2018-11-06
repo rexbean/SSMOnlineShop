@@ -42,7 +42,7 @@ public class ShopDaoTest extends BaseTest{
     @Test
     public void testUpdateShop(){
         Shop shop = new Shop();
-        shop.setShopId(4L);
+        shop.setShopId(3L);
         shop.setShopDesc("Describe");
         shop.setAdvice("checking");
         shop.setCreatedTime(new Date());
@@ -51,4 +51,14 @@ public class ShopDaoTest extends BaseTest{
         int effectedNum = shopDao.updateShop(shop);
         assertEquals(1, effectedNum);
     }
+    @Test
+    public void testQueryByShopId(){
+        long shopId = 3L;
+        Shop shop = shopDao.queryByShopId(shopId);
+        System.out.println("areaId = " + shop.getArea().getAreaId());
+        System.out.println("shopId =" + shop.getShopId());
+        System.out.println("CreatedTime = " + shop.getCreatedTime());
+    }
+
+
 }

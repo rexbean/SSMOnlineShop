@@ -54,6 +54,41 @@ public class ShopServiceImpl implements ShopService{
 
     }
 
+    @Override
+    public Shop getShopById(long shopId) {
+        return shopDao.queryByShopId(shopId);
+    }
+
+    @Override
+    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String filename) throws ShopOperationException {
+        //whether need to modify the image => remove the old one
+        if(shop == null || shop.getShopId() == null){
+            return new ShopExecution(ShopStateEnum.NULL_SHOP);
+        }
+        try{
+            if(shopImgInputStream != null && filename != null && !filename.equals("")){
+                Shop tempShop = shopDao.queryByShopId(shop.getShopId());
+                if(tempShop.getShopImg() != null){
+                    ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+                }
+                addShopImg(shop, shopImgInputStream, filename);
+            }
+            // update the info
+            shop.setModifiedTime(new Date());
+            int effectNum = shopDao.updateShop(shop);
+            if(effectNum <= 0){
+                return new ShopExecution(ShopStateEnum.INNER_ERROR);
+            }
+            Shop s = shopDao.queryByShopId(shop.getShopId());
+            return new ShopExecution(ShopStateEnum.SUCCESS,s);
+        } catch(Exception e){
+            throw new ShopOperationException("modifySho error:" + e.getMessage());
+        }
+
+
+
+    }
+
     private void addShopImg(Shop shop, InputStream shopImgInputStream, String filename){
         // get the relative path
         String dest = PathUtil.getShopImagePath(shop.getShopId());
