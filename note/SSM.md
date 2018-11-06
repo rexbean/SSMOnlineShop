@@ -17,10 +17,30 @@ CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver
 
    - CommonMultiplePartFile convert to File using CommonMultiplePartFile.getInputStream as a intermediate.
 ## SpringMVC
+- Interceptor
+  - Implemented by handler interceptor
+  - in [spring-web.xml](./src/main/resources/spring/spring-web.xml) declare the interceptor
+  ```XML
+    <mvc:interceptors>
+        <!--Login Interceptor-->
+        <mvc:interceptor>
+            <mvc:mapping path="/shopadmin/**"/>
+            <bean id = "ShopInterceptor"
+                  class = "com.rex.onlineShop.interceptor.shopadmin.ShopLoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/shopadmin/**"/>
+            <!--exclude some path-->
+            <mvc:exclude-mapping path = "/shopadmin/getshopinitInfo"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+  ```
 ## Mybatis
 - Configuration
   - jdbc.properties
   - Mybatis-config.xml
+- @Param
+  - (@Param = "<name>") gives a name to the parameter of the parameter in the method, the name will be used in the SQL Statement by "#{}"
 - Dynamic generate SQL statement
   - Generate SQL statement when the condition is true
   ``` XML
