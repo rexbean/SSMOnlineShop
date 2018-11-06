@@ -1,13 +1,14 @@
 # MySQL
 
-## Principle
+## Read/ Write Spliting
+### Principle
 1. Before the transaction finishing updating, master record changes into a Binary log serially.
 2. When event finish writing into the Binary log, master tell the store engine to hand in transaction.
 3. Slave open a I/O thread and connect to the master.
 4. Slave begin a BLog down process to copy the binary log using a queue.
 5. Slave write the log into the Relay log.
 6. Slave repeat the events in the Relay log in a SQL thread.
-## Configuration of Master and Slave
+### Configuration of Master and Slave
 1. Config Master
 - Open the Binary log
 ``` bash
@@ -67,7 +68,7 @@ mysql> start slave
 ``` bash
 mysql> show slave status \G;
 ```
-## Coding for separating read and write
+### Coding for separating read and write
 - Write a [interceptor](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceInterceptor.java) which can redirect the READ operations to the slave, the WRITE operations to the master
 - Use a class named [DataSourceHolder](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSourceHolder.java) to get and set type in a thread safe way.
 - Create a class named [DynamicDataSource](../src/main/java/com/rex/onlineShop/dao/split/DynamicDataSource.java) extends **AbstractRoutingDataSource** to set the different dataSource.
@@ -82,3 +83,9 @@ mysql> show slave status \G;
     - jdbc.password
  - Create a bean dynamicDataSource and set the targetDataSource, whose class is **DynamicDataSource**
  - Create a bean dataSource class = **"org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy"** and set targetDataSource = dynamicDataSource.
+
+## Encrypt the jdbc.username & jdbc.password
+- Write a [class](../src/main/java/com/rex/onlineShop/util/DESUtil.java) to encrypt and decrypt with DES algorithm
+- Encrypt the jdbc.username & jdbc.password with DES in the [jdbc.properties](../src/main/resources/jdbc.properties)
+- Write a [class](../src/main/java/com/rex/onlineShop/uitl/EncryptPropertyPlaceholderConfigurer.java) extends **PropertyPlaceholderConfigurer** to convert properties from cipertext to plaintext. 
+- In [spring-dao.xml](../src/main/resources/spring/spring-dao.xml) creat a bean whose class is **PropertyPlaceholderConfigurer** and set the property locations with the **jdbc.properies** and **fileEncoding with UTF-8**
