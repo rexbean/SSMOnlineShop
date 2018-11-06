@@ -25,4 +25,13 @@
 
     <!--Scan related bean-->
     <context:component-scan base-package="com.rex.onlineShop.web" />
+    <mvc:interceptors>
+        <!--Login Interceptor-->
+        <mvc:interceptor>
+            <mvc:mapping path="/shopadmin/**"/>
+            <bean id = "ShopInterceptor"
+                  class = "com.rex.onlineShop.interceptor.shopadmin.ShopLoginInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
 </beans>

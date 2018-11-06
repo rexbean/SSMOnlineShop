@@ -23,3 +23,8 @@
 2018-11-05 16:20:33.907[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name,priority, created_time, modified_time FROM tb_area ORDER BY priority DESC 
 2018-11-05 16:20:33.938[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==> Parameters: 
 2018-11-05 16:20:33.955[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - <==      Total: 2
+2018-11-05 17:02:15.038[main] DEBUG c.r.o.dao.split.DynamicDataSourceInterceptor - set the method[com.rex.onlineShop.dao.AreaDao.queryArea] use [slave] Strategy, SqlCommanType[SELECT]..
+2018-11-05 17:02:15.038[main] DEBUG c.rex.onlineShop.dao.split.DynamicDataSourceHolder - using data source is slave
+2018-11-05 17:02:15.054[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name,priority, created_time, modified_time FROM tb_area ORDER BY priority DESC 
+2018-11-05 17:02:15.093[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - ==> Parameters: 
+2018-11-05 17:02:15.106[main] DEBUG com.rex.onlineShop.dao.AreaDao.queryArea - <==      Total: 2
