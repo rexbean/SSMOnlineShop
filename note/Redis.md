@@ -1,4 +1,5 @@
 # Redis
+see: http://www.cnblogs.com/itdragon/p/7897131.html
 ## Definition
 - Redis is a distributed memory cache server and use it to do the search operations decrease the time of using database.
 - It is a key-value storage system, 
